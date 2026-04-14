@@ -1,0 +1,33 @@
+# Claude Code
+.claude/
+CLAUDE.md
+.claude-*
+claude.local.md
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Build / temp
+build/
+dist/
+tmp/
+*.tmp
