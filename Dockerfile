@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     ltrace \
     strace \
     binutils \
+    patchelf \
     vim \
     tmux \
     unzip \

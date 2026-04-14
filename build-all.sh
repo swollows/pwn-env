@@ -19,14 +19,29 @@ fi
 
 for VER in "${VERSIONS[@]}"; do
   TAG="pwn-x86:${VER}"
+  CONTAINER_NAME="pwn-${VER//\./-}"
+
   echo ""
   echo "=========================================="
   echo " Building ${TAG}"
   echo "=========================================="
   echo ""
 
+  # 기존 컨테이너 제거
+  if podman container exists "${CONTAINER_NAME}" 2>/dev/null; then
+    echo "[*] 기존 컨테이너 ${CONTAINER_NAME} 제거"
+    podman rm -f "${CONTAINER_NAME}"
+  fi
+
+  # 기존 이미지 제거
+  if podman image exists "${TAG}" 2>/dev/null; then
+    echo "[*] 기존 이미지 ${TAG} 제거"
+    podman rmi -f "${TAG}"
+  fi
+
   podman build \
     --platform linux/amd64 \
+    --no-cache \
     --build-arg UBUNTU_VERSION="${VER}" \
     -t "${TAG}" \
     "${SCRIPT_DIR}"
